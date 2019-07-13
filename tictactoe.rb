@@ -33,8 +33,6 @@ end
 
 def start_game
     clear_screen()
-    puts $player
-    puts $computer
     board = []
     for row in 0...3
         board << []
@@ -53,15 +51,16 @@ end
 def draw_board(board)
     puts
     puts '     +-+-+-+'
-    for row in 0...board.length
+    board.each do |row|
         print '     |'
-        for column in 0...board[row].length
-            print "#{board[row][column]}|"
+        row.each do |column|
+            print "#{column}|"
         end
         puts
         puts '     +-+-+-+'
     end
     puts
 end
+
 
 welcome_screen()
