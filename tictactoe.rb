@@ -21,23 +21,47 @@ end
 def game_initialize
     prompt = TTY::Prompt.new
     puts "Would you like to be X or O ? "
-    $player = prompt.select("Choose which symbol you want to be:", %w(X O Quit))
+    choices = ['X', 'O', 'Quit']
+    $player = prompt.select("Choose which symbol you want to be:", choices)
     if $player == 'Quit'
         clear_screen()
         exit
     end
-    if $player == 'X'
-        $computer = 'O'
-    else
-        $computer = 'X'
-    end
+    $computer = $player == 'X' ? 'O' : 'X'
     start_game()
 end
 
 def start_game
+    clear_screen()
     puts $player
     puts $computer
+    board = []
+    for row in 0...3
+        board << []
+        for column in 0...3
+            board[row] << ' '
+        end
+    end
+    # if rand(2) == 0
+    #     computer_turn(board)
+    # else
+    #     player_turn(board)
+    # end
+    draw_board(board)
 end
 
+def draw_board(board)
+    puts
+    puts '     +-+-+-+'
+    for row in 0...board.length
+        print '     |'
+        for column in 0...board[row].length
+            print "#{board[row][column]}|"
+        end
+        puts
+        puts '     +-+-+-+'
+    end
+    puts
+end
 
 welcome_screen()
