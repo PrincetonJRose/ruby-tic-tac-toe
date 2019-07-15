@@ -45,7 +45,6 @@ def start_game
     else
         player_turn(board)
     end
-    draw_board(board)
 end
 
 def draw_board(board)
@@ -65,16 +64,36 @@ end
 def player_turn(board)
     clear_screen()
     draw_board(board)
-
+    moves_available = check_board(board)
 end
 
 def computer_turn(board)
-    
-    
-    if board[1][1] == ' '
-        board[1][1] == $computer
+    puts "It's the computer's turn. Press enter to continue..."
+    gets
+    moves_available = check_board(board)
+    moved = false
+    if moves_available.include?([1,1]) and moved == false
+        board[1][1] = $computer
+        moved = true
     end
+    
+    
+    player_turn(board)
+end
 
+def check_board(board)
+    available_spaces = []
+    for row in 0...board.length
+        for column in 0...board[row].length
+            if board[row][column] == ' '
+                available_spaces << [row, column]
+            end
+        end
+    end
+    if available_spaces.length == 0
+        game_end(board)
+    end
+    return available_spaces
 end
 
 
