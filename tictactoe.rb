@@ -48,23 +48,22 @@ def start_game
 end
 
 def draw_board(board)
-    puts
-    puts '     +-+-+-+'
+    puts "\n     +-+-+-+"
     board.each do |row|
-        print '     |'
+        print "     |"
         row.each do |column|
             print "#{column}|"
         end
-        puts
-        puts '     +-+-+-+'
+        puts "\n     +-+-+-+"
     end
-    puts
 end
 
 def player_turn(board)
     clear_screen()
+    puts "It's your turn!"
     draw_board(board)
     moves_available = check_board(board)
+    
 end
 
 def computer_turn(board)
@@ -72,16 +71,18 @@ def computer_turn(board)
     gets
     moves_available = check_board(board)
     moved = false
+    
     if moves_available.include?([1,1]) and moved == false
         board[1][1] = $computer
         moved = true
     end
     
-    
+
     player_turn(board)
 end
 
-def check_board(board)
+def check_board(board, turn)
+    # check_win(board, turn)
     available_spaces = []
     for row in 0...board.length
         for column in 0...board[row].length
@@ -91,9 +92,13 @@ def check_board(board)
         end
     end
     if available_spaces.length == 0
-        game_end(board)
+        game_tie()
     end
     return available_spaces
+end
+
+def check_win(baord, turn)
+
 end
 
 
