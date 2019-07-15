@@ -40,11 +40,11 @@ def start_game
             board[row] << ' '
         end
     end
-    # if rand(2) == 0
-    #     computer_turn(board)
-    # else
-    #     player_turn(board)
-    # end
+    if rand(2) == 0
+        computer_turn(board)
+    else
+        player_turn(board)
+    end
     draw_board(board)
 end
 
@@ -60,6 +60,21 @@ def draw_board(board)
         puts '     +-+-+-+'
     end
     puts
+end
+
+def player_turn(board)
+    clear_screen()
+    draw_board(board)
+
+end
+
+def computer_turn(board)
+    
+    
+    if board[1][1] == ' '
+        board[1][1] == $computer
+    end
+
 end
 
 
