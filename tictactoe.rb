@@ -62,14 +62,14 @@ def player_turn(board)
     clear_screen()
     puts "It's your turn!"
     draw_board(board)
-    moves_available = check_board(board)
+    moves_available = check_available_moves(board)
     
 end
 
 def computer_turn(board)
     puts "It's the computer's turn. Press enter to continue..."
     gets
-    moves_available = check_board(board)
+    moves_available = check_available_moves(board)
     moved = false
     
     if moves_available.include?([1,1]) and moved == false
@@ -81,8 +81,8 @@ def computer_turn(board)
     player_turn(board)
 end
 
-def check_board(board, turn)
-    # check_win(board, turn)
+def check_available_moves(board)
+    # check_win(board)
     available_spaces = []
     for row in 0...board.length
         for column in 0...board[row].length
